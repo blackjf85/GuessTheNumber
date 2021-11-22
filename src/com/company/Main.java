@@ -18,20 +18,37 @@ public class Main {
         Scanner guessObj = new Scanner(System.in);
         System.out.println("Take a guess.");
 
-        return guessObj.nextInt();
+        try{
+            int num = guessObj.nextInt();
+            if(num >= 1 && num <= 20){
+                return num;
+            }else {
+                return -1;
+            }
+        }catch (Exception e) {
+            return -1;
+        }
     }
 
     public static String get_name(){
+        try{
             Scanner nameObj = new Scanner(System.in);
             System.out.println("Hello! What is your name?");
             return nameObj.nextLine();
+        }catch (Exception e){
+            return "-1";
+        }
     }
 
     public static Boolean play_again(){
         Scanner playObj = new Scanner(System.in);
         System.out.println("Would you like to play again? (y or n)");
 
-        return playObj.nextLine().equals("y");
+        try{
+            return playObj.nextLine().equals("y");
+        }catch(Exception e) {
+            return null;
+        }
     }
 
     public static void game(){
@@ -41,7 +58,9 @@ public class Main {
 
         while (guessCounter <= 6){
             String userGuess = String.valueOf(user_guess());
-            if(!userGuess.equals(myGuess)){
+            if(userGuess.equals("-1")){
+                System.out.println("Guess must be a number between 1 and 20.");
+            }else if (!userGuess.equals(myGuess)){
                 System.out.println("Not it!");
                 guessCounter += 1;
             }else{
@@ -54,8 +73,13 @@ public class Main {
     public static void main(String[] args) {
         boolean play = true;
         String name = get_name();
-        System.out.println("Well, " + name + ", I am thinking of a number between 1 and 20.");
-        game();
+        if (name.equals("-1")){
+            System.out.println("Something went wrong.");
+            name = get_name();
+        }else{
+            System.out.println("Well, " + name + ", I am thinking of a number between 1 and 20.");
+            game();
+        }
 
         while(play) {
             boolean again = play_again();
