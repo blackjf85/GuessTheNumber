@@ -9,8 +9,7 @@ public class Main {
 
         Random random = new Random();
 
-        int num = random.nextInt(max + min) + min;
-        return num;
+        return random.nextInt(max + min) + min;
     }
 
     public static int user_guess(){
