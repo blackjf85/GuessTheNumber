@@ -1,20 +1,19 @@
-package com.company;
-
 import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
 
-    public static Integer gen_number(){
+    public static int gen_number(){
         int min = 1;
         int max = 20;
 
         Random random = new Random();
 
-        return random.nextInt(max + min) + min;
+        int num = random.nextInt(max + min) + min;
+        return num;
     }
 
-    public static Integer user_guess(){
+    public static int user_guess(){
         Scanner guessObj = new Scanner(System.in);
         System.out.println("Take a guess.");
 
@@ -82,7 +81,7 @@ public class Main {
         }
 
         while(play) {
-            boolean again = play_again();
+            boolean again = Boolean.TRUE.equals(play_again());
             if(again){
                 System.out.println("Well, " + name + ", I am thinking of a number between 1 and 20.");
                 game();
